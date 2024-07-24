@@ -66,6 +66,9 @@ public class UrlController {
         String contextPath = httpServletRequest.getContextPath(); // context path (if any)
 
         // Construct the base URL
-        return scheme + "://" + serverName + ":" + serverPort + "/" + contextPath;
+        if (serverName.equals("localhost")) {
+            return scheme + "://" + serverName + ":" + serverPort + contextPath;
+        }
+        return scheme + "://" + serverName + "/" + contextPath;
     }
 }
