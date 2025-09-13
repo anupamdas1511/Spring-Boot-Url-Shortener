@@ -4,21 +4,23 @@ import com.anupam.url_shortner.models.ApiRequest;
 import com.anupam.url_shortner.services.UrlService;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/api")
 public class UrlController {
 
-    @Autowired
-    private HttpServletRequest httpServletRequest;
-    @Autowired
-    private UrlService urlService;
+    private final HttpServletRequest httpServletRequest;
+    private final UrlService urlService;
 
     @PostMapping
     public ResponseEntity<?> shortenUrl(@RequestBody ApiRequest request) {
@@ -29,7 +31,7 @@ public class UrlController {
         }
 
         String shortenedUrl = baseUrl + key.get();
-        return ResponseEntity.ok(shortenedUrl);
+        return ResponseEntity.ok(Map.of("shortenedUrl", shortenedUrl));
     }
 
     @GetMapping("/{key}")
