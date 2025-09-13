@@ -2,10 +2,8 @@ package com.anupam.url_shortner.controllers;
 
 import com.anupam.url_shortner.models.ApiRequest;
 import com.anupam.url_shortner.services.UrlService;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
